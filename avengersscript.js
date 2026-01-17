@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", type);
 
 
 const observerOptions = {
-    threshold: 0.2 // Triggers when 20% of the section is visible
+    threshold: 0.2
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -144,8 +144,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Target the about section and hero for now
 document.querySelectorAll('section').forEach(section => {
-    section.classList.add('hidden-section'); // Start hidden
+    section.classList.add('hidden-section');
     observer.observe(section);
 });
