@@ -98,7 +98,10 @@
         border-width: 1px;
     }
 
-    .about-text h2, .qualifications .section-title {
+    .about-text h2,
+    .qualifications .section-title,
+    .skills .section-title,
+    .projects .section-title {
         font-size: 2rem;
         margin-bottom: 15px;
     }
@@ -119,16 +122,96 @@
         text-align: center;
     }
 
-     .qualifications {
+    .qualifications {
         padding: 60px 5%;
     }
-    
+
     .timeline {
         padding-left: 20px;
     }
-    
+
     .timeline-dot {
         left: -26px;
+    }
+
+    .skills {
+        padding: 60px 5%;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card {
+        height: auto;
+        
+    }
+
+    .project-content {
+        position: relative;
+        transform: translateY(0);
+        opacity: 1;
+        background: rgba(0, 0, 0, 0.6);
+    }
+
+    .project-img img {
+        height: 250px;
+    }
+
+    .projects-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;   
+        justify-content: center; 
+        padding: 0 !important;  
+        margin: 0 auto !important; 
+        width: 100%;
+    }
+
+    .project-card {
+        width: 90%;         
+        max-width: 350px;     
+        margin: 0 auto 30px auto !important;
+        height: auto;
+        min-height: auto;
+    }
+
+    .project-img {
+        height: 200px;
+        width: 100%;
+    }
+
+    .projects .section-title{
+        font-size: 2rem;
+        margin-bottom: -10%;
+    }
+
+    .project-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: brightness(0.9);
+        transform: none !important;
+    }
+
+    .project-content {
+        position: relative;
+        transform: translateY(0) !important;
+        opacity: 1 !important;
+        background: rgba(20, 20, 20, 0.95);
+        padding: 20px;
+        bottom: auto;
+    }
+
+    .project-links .btn-link {
+        padding: 10px 20px;
+        display: inline-block;
+        margin-top: 5px;
     }
 }
 
