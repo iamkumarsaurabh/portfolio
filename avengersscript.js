@@ -7,15 +7,41 @@ const typingText = document.querySelector(".typing");
 
 const bg = document.querySelector('.bg-container');
 
+
+const lenis = new Lenis({
+    duration: 1.5,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    wheelMultiplier: 1.1,
+    infinite: false,
+});
+
+function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+}
+
+requestAnimationFrame(raf);
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            lenis.scrollTo(target);
+        }
+    });
+});
+
 if (bg) {
     bg.style.height = window.innerHeight + 'px';
 }
 
 themeToggle.addEventListener('click', () => {
-    if(themeToggle.innerText === "☀️"){
+    if (themeToggle.innerText === "☀️") {
         themeToggle.innerText = "🌙";
         document.documentElement.style.setProperty('--bg-url', "url('avengersimages/light.png')");
-        
+
         document.documentElement.style.setProperty('--red', '#D32F2F');
         document.documentElement.style.setProperty('--pink', '#C2185B');
         document.documentElement.style.setProperty('--purple', '#7B1FA2');
@@ -28,15 +54,15 @@ themeToggle.addEventListener('click', () => {
         document.documentElement.style.setProperty('--main-color', 'black');
 
 
-        if(window.innerWidth <= 985){
-        navLinks.style.backgroundColor = "rgba(255, 255, 255, 0.71)";
-    }
-        else{
+        if (window.innerWidth <= 985) {
+            navLinks.style.backgroundColor = "rgba(255, 255, 255, 0.71)";
+        }
+        else {
             navLinks.style.backgroundColor = "transparent";
         }
     }
 
-    else if(themeToggle.innerText === "🌙"){
+    else if (themeToggle.innerText === "🌙") {
         themeToggle.innerText = "☀️";
         document.documentElement.style.setProperty('--bg-url', "url('avengersimages/dark.png')");
 
@@ -51,10 +77,10 @@ themeToggle.addEventListener('click', () => {
         document.documentElement.style.setProperty('--gray', '#E0E0E0');
         document.documentElement.style.setProperty('--main-color', 'white');
 
-         if(window.innerWidth <= 985){
-        navLinks.style.backgroundColor = "rgba(0, 0, 0, 0.671)";
-    }
-        else{
+        if (window.innerWidth <= 985) {
+            navLinks.style.backgroundColor = "rgba(0, 0, 0, 0.671)";
+        }
+        else {
             navLinks.style.backgroundColor = "transparent";
         }
     }
@@ -66,18 +92,18 @@ navToggle.addEventListener('click', () => {
     navLinks.classList.toggle("active");
     document.body.classList.toggle("menu-open");
 
-    if(navToggle.innerText === "☰"){
+    if (navToggle.innerText === "☰") {
         navLinks.style.display = "flex";
-        navToggle.innerText = "✕";   
+        navToggle.innerText = "✕";
     }
-    else if(navToggle.innerText === "✕"){
+    else if (navToggle.innerText === "✕") {
         navLinks.style.display = "none";
         navToggle.innerText = "☰";
     }
     if (navLinks.classList.contains("active")) {
         navToggle.innerHTML = "&#10005;"; // ✕
         navToggle.style.transform = "rotate(90deg)";
-    } 
+    }
     else {
         navToggle.innerHTML = "&#9776;"; // ☰
         navToggle.style.transform = "rotate(0deg)";
@@ -86,12 +112,12 @@ navToggle.addEventListener('click', () => {
 
 window.addEventListener('click', (e) => {
     if (navLinks.classList.contains("active")) {
-        
+
         if (!navLinks.contains(e.target) && !navToggle.contains(e.target)) {
             navLinks.classList.remove("active");
             document.body.classList.toggle("menu-open");
-            
-            navToggle.innerHTML = "&#9776;"; 
+
+            navToggle.innerHTML = "&#9776;";
             navToggle.style.transform = "rotate(0deg)";
         }
     }
@@ -105,11 +131,11 @@ let isDeleting = false;
 
 function type() {
     const currentRole = roles[roleIndex];
-    
+
     if (isDeleting) {
         typingText.textContent = currentRole.substring(0, charIndex - 1);
         charIndex--;
-    } 
+    }
     else {
         typingText.textContent = currentRole.substring(0, charIndex + 1);
         charIndex++;
@@ -118,7 +144,7 @@ function type() {
     let typeSpeed = isDeleting ? 100 : 200;
 
     if (!isDeleting && charIndex === currentRole.length) {
-        typeSpeed = 2000; // Pause at the end
+        typeSpeed = 2000;
         isDeleting = true;
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
@@ -147,4 +173,30 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('section').forEach(section => {
     section.classList.add('hidden-section');
     observer.observe(section);
+});
+
+const skillsOptions = {
+    threshold: 0.3
+};
+
+const skillCards = document.querySelectorAll('.flip-card');
+
+skillCards.forEach(card => {
+    const bar = card.querySelector('.progress-fill');
+    const targetWidth = bar.getAttribute('data-width');
+
+    bar.style.width = '0%';
+
+    card.addEventListener('mouseenter', () => {
+        bar.style.transition = 'width 1s cubic-bezier(0.2, 1, 0.2, 1) 0.4s';
+
+        requestAnimationFrame(() => {
+            bar.style.width = targetWidth;
+        });
+    });
+
+    card.addEventListener('mouseleave', () => {
+        bar.style.transition = 'width 0.2s ease-in';
+        bar.style.width = '0%';
+    });
 });
