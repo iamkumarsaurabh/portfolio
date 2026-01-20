@@ -200,3 +200,4 @@ skillCards.forEach(card => {
         bar.style.width = '0%';
     });
 });
+
