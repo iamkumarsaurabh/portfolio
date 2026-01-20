@@ -149,7 +149,7 @@
 
     .project-card {
         height: auto;
-        
+
     }
 
     .project-content {
@@ -166,16 +166,16 @@
     .projects-container {
         display: flex;
         flex-direction: column;
-        align-items: center;   
-        justify-content: center; 
-        padding: 0 !important;  
-        margin: 0 auto !important; 
+        align-items: center;
+        justify-content: center;
+        padding: 0 !important;
+        margin: 0 auto !important;
         width: 100%;
     }
 
     .project-card {
-        width: 90%;         
-        max-width: 350px;     
+        width: 90%;
+        max-width: 350px;
         margin: 0 auto 30px auto !important;
         height: auto;
         min-height: auto;
@@ -186,7 +186,7 @@
         width: 100%;
     }
 
-    .projects .section-title{
+    .projects .section-title {
         font-size: 2rem;
         margin-bottom: -10%;
     }
@@ -212,6 +212,18 @@
         padding: 10px 20px;
         display: inline-block;
         margin-top: 5px;
+    }
+
+    .contact-container {
+        flex-direction: column;
+    }
+
+    .glass-card {
+        width: 100%;
+    }
+
+    .footer-content {
+        flex-direction: column;
     }
 }
 
