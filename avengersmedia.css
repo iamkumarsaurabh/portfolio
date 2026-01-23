@@ -101,7 +101,8 @@
     .about-text h2,
     .qualifications .section-title,
     .skills .section-title,
-    .projects .section-title {
+    .projects .section-title,
+    .contact-section .section-title {
         font-size: 2rem;
         margin-bottom: 15px;
     }
@@ -212,6 +213,24 @@
         padding: 10px 20px;
         display: inline-block;
         margin-top: 5px;
+    }
+
+    .contact-section{
+        margin-top: -15vh;
+    }
+
+    .contact-section .section-title{
+        margin-bottom: -2vh;
+    }
+
+    .contact-section .social-grid{
+            margin-left: -2vh;
+    }
+
+    .social-btn{
+        width: 45px;
+        height: 45px;
+        font-size: 1.8rem;
     }
 
     .contact-container {
