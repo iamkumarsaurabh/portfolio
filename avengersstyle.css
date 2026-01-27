@@ -711,6 +711,10 @@ header {
     color: #E0E0E0;
 }
 
+.project-card .project-one{
+    margin-left: -15px;
+}
+
 .project-content .project-links i{
     color: white;
 }
